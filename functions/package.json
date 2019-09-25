@@ -2,8 +2,13 @@
   "name": "@ondo-choseikun/functions",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
   "author": "Hood",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.6.3"
+  }
 }

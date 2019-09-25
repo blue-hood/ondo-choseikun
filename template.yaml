@@ -14,7 +14,7 @@ Resources:
   HelloFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: functions/
+      CodeUri: functions/dist/
       Handler: index.helloHandler
       Events:
         Hello:
