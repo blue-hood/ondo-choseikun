@@ -1,6 +1,20 @@
-export async function helloHandler() {
-  return {
-    statusCode: 200,
-    body: JSON.stringify("Hello")
-  };
+import { ApolloServer, gql } from 'apollo-server-lambda';
+
+const typeDefs = gql`
+  type Query {
+    hello: String
+  }
+`;
+
+const resolvers = {
+  Query: {
+    hello: (): string => 'hello',
+  },
 };
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
+
+export const helloHandler = server.createHandler();
