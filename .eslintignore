@@ -1,1 +1,1 @@
-functions/index.js
+functions/**/*.js

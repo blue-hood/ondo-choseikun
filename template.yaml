@@ -20,8 +20,13 @@ Resources:
       CodeUri: functions/
       Handler: index.graphQLHandler
       Events:
-        GraphQL:
+        GetGraphQL:
           Type: Api
           Properties:
             Path: /graphql
             Method: get
+        PostGraphQL:
+          Type: Api
+          Properties:
+            Path: /graphql
+            Method: post
