@@ -8,13 +8,13 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    hello: (): string => 'hello',
-  },
+    hello: (): string => 'hello'
+  }
 };
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
+  resolvers
 });
 
 export const graphQLHandler = server.createHandler();

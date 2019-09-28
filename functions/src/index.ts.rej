@@ -1,0 +1,12 @@
+diff a/functions/src/index.ts b/functions/src/index.ts	(rejected hunks)
+@@ -3 +3 @@ import { ApolloServer, gql } from 'apollo-server-lambda';
+-const typeDefs = gql` 
++const typeDefs = gql`
+@@ -11,2 +11,2 @@ const resolvers = {
+-    hello: (): string => 'hello',
+-  },
++    hello: (): string => 'hello'
++  }
+@@ -17 +17 @@ const server = new ApolloServer({
+-  resolvers,
++  resolvers

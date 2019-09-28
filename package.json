@@ -1,0 +1,25 @@
+{
+  "name": "ondo-choseikun",
+  "version": "0.0.0",
+  "description": "温度調整くん。",
+  "scripts": {
+    "test": "lint-staged && tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com//blue-hood/ondo-choseikun"
+  },
+  "author": "Hood",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^1.12.0",
+    "@typescript-eslint/parser": "^1.12.0",
+    "eslint": "^5.0.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^3.0.0",
+    "lint-staged": "^9.2.0",
+    "prettier": "^1.18.2",
+    "typescript": "^3.5.3"
+  }
+}

@@ -1,13 +1,8 @@
 {
-  "name": "@ondo-choseikun/functions",
-  "version": "0.0.0",
-  "description": "",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w"
   },
-  "author": "Hood",
-  "license": "MIT",
   "devDependencies": {
     "typescript": "^3.6.3"
   },
