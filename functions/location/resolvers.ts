@@ -1,5 +1,5 @@
-export default {
-  Query: {
-    hello: (): string => 'hello'
-  }
+import { QueryResolvers } from '../graphql';
+
+export const queries: QueryResolvers = {
+  hello: (): string => 'hello'
 };

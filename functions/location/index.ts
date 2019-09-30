@@ -1,4 +1,4 @@
 import typeDefs from './typedefs';
-import resolvers from './resolvers';
+import { queries } from './resolvers';
 
-export { typeDefs, resolvers };
+export { typeDefs, queries };
