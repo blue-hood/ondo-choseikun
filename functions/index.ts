@@ -1,8 +1,12 @@
-import { ApolloServer } from 'apollo-server-lambda';
+import { ApolloServer, gql } from 'apollo-server-lambda';
 import { typeDefs as locationTypeDefs, resolvers as locationResolvers } from './location';
 
+const typeDefs = gql`
+  type Query
+`;
+
 const server = new ApolloServer({
-  typeDefs: [locationTypeDefs],
+  typeDefs: [typeDefs, locationTypeDefs],
   resolvers: [locationResolvers]
 });
 

@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server-lambda';
 
 export default gql`
-  type Query {
-    hello: String
+  extend type Query {
+    hello: String!
   }
 `;
