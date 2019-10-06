@@ -2,7 +2,7 @@
   "scripts": {
     "build": "tsc",
     "generate": "graphql-codegen",
-    "watch": "yarn build -- -w & yarn generate -- -w"
+    "watch": "yarn build -- -w & yarn generate -- -w '{,!(node_modules)/**/}*.ts'"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.7.0",

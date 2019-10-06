@@ -1,0 +1,15 @@
+version: '3'
+services:
+  test:
+    image: node:alpine
+    tty: true
+    working_dir: /ondo-choseikun
+    volumes:
+      - .:/ondo-choseikun
+    network_mode: 'host' # ホストで動作している Apollo Server にアクセスするため
+    command: >
+      sh -c "
+        yarn &&
+        cd functions/ && yarn && cd ../ &&
+        ( yarn test:watch & cd functions/ && yarn watch )
+      "

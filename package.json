@@ -4,9 +4,10 @@
   "description": "温度調整くん。",
   "scripts": {
     "test": "yarn test:prettier && yarn test:tsc && yarn test:eslint",
-    "test:prettier": "prettier --write **/*.{md,yml,yaml}",
+    "test:watch": "onchange -i --exclude-path .gitignore '**/*' -- yarn test",
+    "test:prettier": "prettier --write '**/*.{md,yml,yaml}'",
     "test:tsc": "tsc --noEmit",
-    "test:eslint": "eslint --fix --quiet --ignore-path .gitignore **/*.ts"
+    "test:eslint": "eslint --fix --quiet --ignore-path .gitignore '**/*.ts'"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
     "eslint": "^5.0.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.0",
+    "onchange": "^6.1.0",
     "prettier": "^1.18.2",
     "typescript": "^3.5.3"
   }
