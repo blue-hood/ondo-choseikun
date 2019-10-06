@@ -1,23 +1,37 @@
 import { GraphQLResolveInfo } from 'graphql';
 export type Maybe<T> = T | null;
+export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
-export interface Scalars {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
-}
+export type Scalars = {
+  ID: string,
+  String: string,
+  Boolean: boolean,
+  Int: number,
+  Float: number,
+};
+
 
 export enum CacheControlScope {
   Public = 'PUBLIC',
   Private = 'PRIVATE'
 }
 
-export interface Query {
-  __typename?: 'Query';
-  hello: Scalars['String'];
-}
+export type Location = {
+   __typename?: 'Location',
+  latitude: Scalars['Float'],
+  longitude: Scalars['Float'],
+};
+
+export type Query = {
+   __typename?: 'Query',
+  location: Location,
+};
+
+
+export type QueryLocationArgs = {
+  id: Scalars['ID']
+};
+
 export type WithIndex<TObject> = TObject & Record<string, any>;
 export type ResolversObject<TObject> = WithIndex<TObject>;
 
@@ -30,10 +44,11 @@ export type ResolverFn<TResult, TParent, TContext, TArgs> = (
   info: GraphQLResolveInfo
 ) => Promise<TResult> | TResult;
 
-export interface StitchingResolver<TResult, TParent, TContext, TArgs> {
+
+export type StitchingResolver<TResult, TParent, TContext, TArgs> = {
   fragment: string;
   resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
-}
+};
 
 export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> =
   | ResolverFn<TResult, TParent, TContext, TArgs>
@@ -89,51 +104,58 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
-  Query: ResolverTypeWrapper<{}>;
-  String: ResolverTypeWrapper<Scalars['String']>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
-  CacheControlScope: CacheControlScope;
-  Int: ResolverTypeWrapper<Scalars['Int']>;
+  Query: ResolverTypeWrapper<{}>,
+  ID: ResolverTypeWrapper<Scalars['ID']>,
+  Location: ResolverTypeWrapper<Location>,
+  Float: ResolverTypeWrapper<Scalars['Float']>,
+  String: ResolverTypeWrapper<Scalars['String']>,
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
+  CacheControlScope: CacheControlScope,
+  Int: ResolverTypeWrapper<Scalars['Int']>,
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
-  Query: {};
-  String: Scalars['String'];
-  Boolean: Scalars['Boolean'];
-  CacheControlScope: CacheControlScope;
-  Int: Scalars['Int'];
+  Query: {},
+  ID: Scalars['ID'],
+  Location: Location,
+  Float: Scalars['Float'],
+  String: Scalars['String'],
+  Boolean: Scalars['Boolean'],
+  CacheControlScope: CacheControlScope,
+  Int: Scalars['Int'],
 }>;
 
-export type CacheControlDirectiveResolver<
-  Result,
-  Parent,
-  ContextType = any,
-  Args = { maxAge?: Maybe<Maybe<Scalars['Int']>>; scope?: Maybe<Maybe<CacheControlScope>> }
-> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type CacheControlDirectiveResolver<Result, Parent, ContextType = any, Args = {   maxAge?: Maybe<Maybe<Scalars['Int']>>,
+  scope?: Maybe<Maybe<CacheControlScope>> }> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-export type QueryResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
-> = ResolversObject<{
-  hello?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+export type LocationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Location'] = ResolversParentTypes['Location']> = ResolversObject<{
+  latitude?: Resolver<ResolversTypes['Float'], ParentType, ContextType>,
+  longitude?: Resolver<ResolversTypes['Float'], ParentType, ContextType>,
+}>;
+
+export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
+  location?: Resolver<ResolversTypes['Location'], ParentType, ContextType, RequireFields<QueryLocationArgs, 'id'>>,
 }>;
 
 export type Resolvers<ContextType = any> = ResolversObject<{
-  Query?: QueryResolvers<ContextType>;
+  Location?: LocationResolvers<ContextType>,
+  Query?: QueryResolvers<ContextType>,
 }>;
+
 
 /**
  * @deprecated
  * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
- */
+*/
 export type IResolvers<ContextType = any> = Resolvers<ContextType>;
 export type DirectiveResolvers<ContextType = any> = ResolversObject<{
-  cacheControl?: CacheControlDirectiveResolver<any, any, ContextType>;
+  cacheControl?: CacheControlDirectiveResolver<any, any, ContextType>,
 }>;
 
+
 /**
- * @deprecated
- * Use "DirectiveResolvers" root object instead. If you wish to get "IDirectiveResolvers", add "typesPrefix: I" to your config.
- */
+* @deprecated
+* Use "DirectiveResolvers" root object instead. If you wish to get "IDirectiveResolvers", add "typesPrefix: I" to your config.
+*/
 export type IDirectiveResolvers<ContextType = any> = DirectiveResolvers<ContextType>;

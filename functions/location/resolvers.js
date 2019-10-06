@@ -1,5 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.queries = {
-    hello: () => 'hello'
+    location: (obj, { id }, context, info) => {
+        return {
+            latitude: Number(id),
+            longitude: 1.5
+        };
+    }
 };

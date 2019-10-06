@@ -1,7 +1,12 @@
 import { gql } from 'apollo-server-lambda';
 
 export default gql`
+  type Location {
+    latitude: Float!
+    longitude: Float!
+  }
+
   extend type Query {
-    hello: String!
+    location(id: ID!): Location!
   }
 `;

@@ -1,2 +1,4 @@
-node_modules/
-functions/node_modules/
+node_modules
+functions/graphql.ts
+functions/**/*.js
+!functions/apollo.config.js

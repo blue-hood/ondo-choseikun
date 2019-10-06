@@ -1,5 +1,10 @@
-import { QueryResolvers } from '../graphql';
+import { QueryResolvers, Location } from '../graphql';
 
 export const queries: QueryResolvers = {
-  hello: (): string => 'hello'
+  location: (obj, { id }, context, info): Location => {
+    return {
+      latitude: Number(id),
+      longitude: 1.5
+    };
+  }
 };
